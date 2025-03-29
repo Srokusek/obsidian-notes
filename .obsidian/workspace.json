@@ -166,8 +166,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 411.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -183,18 +182,18 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "f85be5c7a3dd2dc5",
+  "active": "2c36bc65e402a472",
   "lastOpenFiles": [
+    "Main.md",
+    "Uni/Deep Learning/Deep Learning.md",
     "New Text Document.txt",
     "Uni/Computer Vision/Computer Vision.md",
-    "Main.md",
     "README.md",
     "obsidian-notes/README.md",
     "obsidian-notes",
     "Uni/Computer Vision/Slides/03 Motion Detection Lecture notes.pdf",
     "Uni/Computer Vision/Lectures/Motion Detection.md",
     "Uni/Signal, Image and Video/Project Presentation.md",
-    "Uni/Deep Learning/Deep Learning.md",
     "Uni/Computer Vision/Slides",
     "Uni/Computer Vision/Lectures",
     "Uni/Signal, Image and Video",
@@ -204,8 +203,6 @@
     "Uni/Computer Vision/Slides/03 Motion Detection Lecture notes.pdf",
     "Uni/Computer Vision/Lectures/Motion Detection.md",
     "Uni/Signal, Image and Video/Project Presentation.md",
-    "Uni/Deep Learning/Deep Learning.md",
-    "Uni/Computer Vision/Slides",
     "create a link.md",
     "Pasted image 20250328073310.png",
     "Motion Detection Lecture PDF.md"
