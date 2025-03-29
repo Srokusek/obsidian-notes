@@ -166,7 +166,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -182,7 +183,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "2c36bc65e402a472",
+  "active": "f85be5c7a3dd2dc5",
   "lastOpenFiles": [
     "Uni/Computer Vision/Computer Vision.md",
     "Main.md",
