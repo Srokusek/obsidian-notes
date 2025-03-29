@@ -1,0 +1,210 @@
+{
+  "main": {
+    "id": "e775e007c45ede30",
+    "type": "split",
+    "children": [
+      {
+        "id": "0010c7db4fb905fd",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2c36bc65e402a472",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Uni/Signal, Image and Video/Project Presentation.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Project Presentation"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "91038320c147ffa0",
+    "type": "split",
+    "children": [
+      {
+        "id": "e13491c38a5410f4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f85be5c7a3dd2dc5",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "c865e56237c64ba6",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "0cdd619091f7aa2e",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "bb87d7c825cad39b",
+    "type": "split",
+    "children": [
+      {
+        "id": "380c306925089540",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cb13a0ac3f588e7d",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Motion Detection.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Motion Detection"
+            }
+          },
+          {
+            "id": "78959d1ff1b6f01b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Motion Detection.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Motion Detection"
+            }
+          },
+          {
+            "id": "248da7eb473c73c2",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "cd8c0219d7927b81",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Motion Detection.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Motion Detection"
+            }
+          },
+          {
+            "id": "57b011a281785d33",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 411.5,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "pdf-plus:PDF++: Toggle auto-copy": false,
+      "pdf-plus:PDF++: Toggle auto-focus": false,
+      "pdf-plus:PDF++: Toggle auto-paste": false,
+      "obsidian-git:Open Git source control": false
+    }
+  },
+  "active": "2c36bc65e402a472",
+  "lastOpenFiles": [
+    "Uni/Deep Learning/Deep Learning.md",
+    "Uni/Computer Vision/Computer Vision.md",
+    "Uni/Signal, Image and Video/Project Presentation.md",
+    "Main.md",
+    "New Text Document.txt",
+    "README.md",
+    "obsidian-notes/README.md",
+    "obsidian-notes",
+    "Uni/Computer Vision/Slides/03 Motion Detection Lecture notes.pdf",
+    "Uni/Computer Vision/Lectures/Motion Detection.md",
+    "Uni/Computer Vision/Slides",
+    "Uni/Computer Vision/Lectures",
+    "Uni/Signal, Image and Video",
+    "Uni/Deep Learning",
+    "Uni/Computer Vision",
+    "Uni",
+    "Uni/Computer Vision/Slides/03 Motion Detection Lecture notes.pdf",
+    "Uni/Computer Vision/Lectures/Motion Detection.md",
+    "create a link.md",
+    "Pasted image 20250328073310.png",
+    "Motion Detection Lecture PDF.md"
+  ]
+}
