@@ -1,2 +1,11 @@
-.obsidian/workspace-mobile
-.obsidian/workspace
+*.obsidian
+.obsidian\*
+\.obsidian
+.obsidian\
+.\.obsidian\*
+.\.obsidian
+.obsidian/*
+/.obsidian
+.obsidian/
+/.obsidian/
+/.obsidian/*
