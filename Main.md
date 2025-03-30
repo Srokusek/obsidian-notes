@@ -7,6 +7,7 @@ When you're ready, delete this note and make the vault your own.
 ### Uni classes
 [[Computer Vision]]
 [[Deep Learning]]
+[[Natural Language Understanding]]
 
 
 github token
