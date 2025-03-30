@@ -1,7 +1,17 @@
 Using the paper [[REGULARIZING AND OPTIMIZING LSTM LANGUAGE MODELS.pdf]]
 
 
+### topics for improvement
+1. Weight tying
+2. Variational dropout
+3. Non-monotonically Triggered AvSGD
 
-> [!PDF|255, 208, 0] [[REGULARIZING AND OPTIMIZING LSTM LANGUAGE MODELS.pdf#page=2&annotation=512R|REGULARIZING AND OPTIMIZING LSTM LANGUAGE MODELS, p.2]]
-> > In this work, we investigate a set of regularization strategies that are not only highly effective but which can also be used with no modification to existing LSTM implementations. The weightdropped LSTM applies recurrent regularization through a DropConnect mask on the hidden-tohidden recurrent weights. Other strategies include the use of randomized-length backpropagation through time (BPTT), embedding dropout, activation regularization (AR), and temporal activation regularization (TAR).
+### Weight tying
+
+![[REGULARIZING AND OPTIMIZING LSTM LANGUAGE MODELS.pdf#page=5&rect=106,248,510,306|REGULARIZING AND OPTIMIZING LSTM LANGUAGE MODELS, p.5]]
+
+Weight tying makes the network share weights between the embedding and softmax layer. Sharing the weights effectively makes the number of parameters learned smaller. 
+
+> [!PDF|255, 208, 0] [[REGULARIZING AND OPTIMIZING LSTM LANGUAGE MODELS.pdf#page=5&annotation=523R|REGULARIZING AND OPTIMIZING LSTM LANGUAGE MODELS, p.5]]
+> > prevents the model from having to learn a one-to-one correspondence between the input and output
 
