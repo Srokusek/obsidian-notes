@@ -1,5 +1,0 @@
-### Topics
-
-[[Motion Detection]]
-[[Tracking]]
-
