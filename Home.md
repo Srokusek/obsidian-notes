@@ -6,3 +6,6 @@
 [[Signal, Image and Video]]
 
 
+### Library Topics
+
+[[Graph Neural Networks]]

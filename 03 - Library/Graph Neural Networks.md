@@ -1,10 +1,12 @@
-Date Created: {{date}}
-Tags: 
+Date Created: 2025-04-02
+Tags: #GNN #ML #NN/GNN
 
 >[!wiki]- levels
 >>[!wiki] higher
+>>[[Neural Networks]]
 >
 >>[!wiki] equal
+>>[[Large Language Models]]
 >
 >>[!wiki] lower
 
@@ -17,6 +19,7 @@ Tags:
 
 ## Description
 
+Graph neural Networks, or GNNs are neural  networks specially constructed to be applied to graph structures. 
 
 ## Mathematics
 
@@ -27,4 +30,6 @@ Tags:
 
 
 >[!wiki] Resources
+>[[GNN History.pdf]]
+>
 
