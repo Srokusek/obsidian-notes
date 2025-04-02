@@ -1,0 +1,12 @@
+{
+  "theme": "obsidian",
+  "cssTheme": "Neovim",
+  "accentColor": "#abcae8",
+  "textFontFamily": "Times",
+  "interfaceFontFamily": "",
+  "monospaceFontFamily": "Times",
+  "baseFontSize": 18,
+  "enabledCssSnippets": [
+    "callouts"
+  ]
+}
