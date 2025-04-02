@@ -45,7 +45,7 @@ I actually had trouble when looking for the name of the 3D version of Template M
 
 Downsampling is the process of systematically reducing the number of points within the point cloud. There exist different methods and 2 of those are implemented in the open3d library. The first one is **uniform down sample** which takes the list of point clouds, and removes every $k^{th}$ point[cite o3d]. This operation is very fast, but it can be clearly seen that it lacks much motivation for choosing the points which should be removed in terms of their actual position in space. 
 The method for downsampling I chose was the **voxel down sample**. This method is more "spatially" motivated, as it essentially splits the point cloud space into a voxel grid, if one voxel contains more than one points, it calculates the average point [cite 03d voxel down sample]. This method resembles resolution dimension in 2d images, with the difference that instead of pixels we use voxels (3d equivalent of pixels - **vo**lumetric **pixel**s)
-
+![[SIV Report 2025-04-02 14.00.08.excalidraw]]
 (add downsample diagram)
 	
    >[!question] Why downsample?
