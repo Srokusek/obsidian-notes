@@ -1,7 +1,7 @@
 # Deep learning - Course Hub
 ---
 ## 📄 Handwritten Notes (GoodNotes)
-- [EXAMPLE](file:///path/to/google/drive/GoodNotes/Lecture1.pdf)
+- [[06 - Resources/GoodNotes/Deep Learning/Lectures.pdf|Lecture Notes]]
 
 ## 📚 Topics
 - [[EXAMPLE]]

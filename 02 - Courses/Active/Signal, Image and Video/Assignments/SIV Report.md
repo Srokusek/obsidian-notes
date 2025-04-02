@@ -67,8 +67,8 @@ The main takeaway is that mapping into the feature space is done with the goal o
 
 ### RANSAC Global Registration
 
-
-### Bibliography
+RANSAC or **Ran**dom **Sa**mple **C**onsensus, is a an iterative algorithm for learning model parameters in data with outliers. The algorithm is not specific to global registration, or even point cloud operations in general. As the "Random" in the name suggests, it is a non-deterministic algorithm. In general, at each iteration, it chooses a random subsample of the data, which get marked as temporary inliers. This subset is then used to learn the desired parameters. 
+### References
 [1]
 
 K. Koide, S. Oishi, M. Yokozuka, and A. Banno, “Exact Point Cloud Downsampling for Fast and Accurate Global Trajectory Optimization,” Dec. 25, 2023, _arXiv_: arXiv:2307.02948. doi: [10.48550/arXiv.2307.02948](https://doi.org/10.48550/arXiv.2307.02948).

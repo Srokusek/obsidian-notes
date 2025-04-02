@@ -1,13 +1,14 @@
 # Signal, Image and Video - Course Hub
 ---
 ## 📄 Handwritten Notes (GoodNotes)
-- [EXAMPLE](file:///path/to/google/drive/GoodNotes/Lecture1.pdf)
+- [[06 - Resources/GoodNotes/Signal, Image And Video/Project/Notes.pdf|Project Notes]]
+- [[Signal.pdf|Lecture Notes]]
 
 ## 📚 Topics
-- [[EXAMPLE]]
+
 
 ## 📝 Summaries
-- [[EXAMPLE]]
+
 
 ## 📑 Assignments
 - [[SIV Presentation]]
