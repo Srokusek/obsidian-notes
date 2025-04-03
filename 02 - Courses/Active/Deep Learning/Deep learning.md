@@ -7,7 +7,7 @@
 - [[EXAMPLE]]
 
 ## 📝 Summaries
-- [[EXAMPLE]]
+- [[Convolutional Neural Networks]]
 
 ## 📑 Assignments
 - [[EXAMPLE]]
