@@ -7,7 +7,8 @@
 - [[EXAMPLE]]
 
 ## 📝 Summaries
-- [[EXAMPLE]]
+- [[Named Entities]]
+- [[Sentence-level NLU]]
 
 ## 📑 Assignments
 - [[NLU - Project 1A]]

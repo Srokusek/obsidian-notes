@@ -26,10 +26,11 @@ Graph neural Networks, or GNNs are neural  networks specially constructed to be 
 
 ## Applications
 
-
+There are some arguments to be made about the similarity between transformers and GNNs structure. ([[Transformers are GNNs]])
 
 
 >[!wiki] Resources
 >[[GNN History.pdf]]
+>[[Transformers are Graph Neural Networks.pdf]]
 >
 
