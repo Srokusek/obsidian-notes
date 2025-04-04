@@ -9,8 +9,8 @@ Contents:
 	3. What is the data used
 3. Models
 	1. RANSAC
-	2. FGR
-	3. +ICP
+	2. FGR (I don't think so)
+	3. +ICP (maybe just mention)
 4. Performance
 5. Learned outcomes
 
@@ -40,7 +40,7 @@ I actually had trouble when looking for the name of the 3D version of Template M
 
 ![[SIV Report 2025-03-29 21.02.18.excalidraw]]
 
-### Preprocessing steps
+# Preprocessing steps
 #### 1. Downsampling
 
 Downsampling is the process of systematically reducing the number of points within the point cloud. There exist different methods and 2 of those are implemented in the open3d library. The first one is **uniform down sample** which takes the list of point clouds, and removes every $k^{th}$ point[cite o3d]. This operation is very fast, but it can be clearly seen that it lacks much motivation for choosing the points which should be removed in terms of their actual position in space. 
@@ -65,7 +65,13 @@ The main takeaway is that mapping into the feature space is done with the goal o
 
 (insert diagram showing that points with similar geometric properties are close to each other in fpfh feature space)
 
-### RANSAC Global Registration
+# RANSAC Global Registration
+
+RANSAC, or **Ran**dom **Sa**mple **C**onsensus, is a general method for learning data with outliers. As the "Random" suggests, it is a non-deterministic method. The general idea is to take a random sample among the data, fit based solely on this sample and examine the quality of this fit based on the entire data. All points which are deemed as "well fitted" are marked as inliers. This process is repeated and the fit which has the highest number of inliers is selected. [cite wikipedia]
+In the point cloud case, we choose a random sample of points, look up their closest neighbors in the fpfh space (where similar points should exist nearby). The algorithm then takes these pairs of sampled points and their closest fpfh neighbors, and tries to find a transformation which would minimize their distance in the xyz space. Afterwards, all points are considered and to check if their nearest neighbor in the xyz space is also near in the fpfh space. If they are, we mark them as inliers and count them. This process of randomly sampling and evaluation is repeated many times, with some clever pruning tricks to focus only on promising matches. The output of the algorithm is the transformation which lead to the highest number of inliers. [cite  o3d] 
+So why is this method particularly useful in point cloud registration? The method is essentially looking for a fit that matches for the highest number of points. It is very likely that the 2 point clouds are not exactly equal, nor have the same number of points. Since we are only matching based on a subsample and allow for outliers in the result, the RANSAC algorithm is a robust way to locate point clouds with similar shape. 
+
+# Experiments
 
 
 ### Bibliography
