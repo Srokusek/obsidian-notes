@@ -9,6 +9,9 @@
 ## 📝 Summaries
 - [[Motion Detection]]
 
+## Labs
+- [[Lab3 - Tracking]]
+
 ## 📑 Assignments
 - [[EXAMPLE]]
 - [[EXAMPLE]]
