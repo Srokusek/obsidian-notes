@@ -9,6 +9,7 @@
 ## 📝 Summaries
 - [[Named Entities]]
 - [[Sentence-level NLU]]
+- [[Neural Networks for NLU]]
 
 ## 📑 Assignments
 - [[NLU - Project 1A]]
