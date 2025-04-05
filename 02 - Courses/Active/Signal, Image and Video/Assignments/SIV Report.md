@@ -7,12 +7,12 @@ Contents:
 	1. What are point clouds
 	2. What is global registration
 	3. What is the data used
-3. Models
+3. Preprocessing
+4. Models
 	1. RANSAC
-	2. FGR (I don't think so)
-	3. +ICP (maybe just mention)
-4. Performance
-5. Learned outcomes
+	2. FGR
+5. Experiments
+6. Results
 
 # Introduction
 
@@ -69,10 +69,56 @@ The main takeaway is that mapping into the feature space is done with the goal o
 
 RANSAC, or **Ran**dom **Sa**mple **C**onsensus, is a general method for learning data with outliers. As the "Random" suggests, it is a non-deterministic method. The general idea is to take a random sample among the data, fit based solely on this sample and examine the quality of this fit based on the entire data. All points which are deemed as "well fitted" are marked as inliers. This process is repeated and the fit which has the highest number of inliers is selected. [cite wikipedia]
 In the point cloud case, we choose a random sample of points, look up their closest neighbors in the fpfh space (where similar points should exist nearby). The algorithm then takes these pairs of sampled points and their closest fpfh neighbors, and tries to find a transformation which would minimize their distance in the xyz space. Afterwards, all points are considered and to check if their nearest neighbor in the xyz space is also near in the fpfh space. If they are, we mark them as inliers and count them. This process of randomly sampling and evaluation is repeated many times, with some clever pruning tricks to focus only on promising matches. The output of the algorithm is the transformation which lead to the highest number of inliers. [cite  o3d] 
-So why is this method particularly useful in point cloud registration? The method is essentially looking for a fit that matches for the highest number of points. It is very likely that the 2 point clouds are not exactly equal, nor have the same number of points. Since we are only matching based on a subsample and allow for outliers in the result, the RANSAC algorithm is a robust way to locate point clouds with similar shape. 
+So why is this method particularly useful in point cloud registration? It is essentially looking for a fit that matches for the highest number of points. It is very likely that the 2 point clouds are not exactly equal, nor have the same number of points. Since we are only matching based on a subsample and allow for outliers in the result, the RANSAC algorithm is a robust way to locate point clouds with similar shape. 
+
+>[!pros] Pros of RANSAC Global Registration
+>- Robust
+>- Able to register partially overlapping point clouds
+>- Works globally
+
+>[!cons] Cons of RANSAC global registration
+>- Non deterministic
+>- Requires many iterations
+>- Slow
+
+# Fast Global Registration
+
+
+>[!pros] Pros of FGR
+>- **Much** faster than RANSAC
+>- With good parameters can give better result than even local alignment
+
+>[!cons] cons of FGR
+>- Parameters need to be picked well
+>- Less robust
+
 
 # Experiments
 
+I tested the models using 2 different experiments. The task in each of the experiments was to align the target and source point clouds. The first experiment focuses on aligning 2 identical point clouds with high resolution and a relatively good initial alignment. The second experiment performs registration in a scene with multiple objects, where the target and source point clouds have very different distribution of points (simulates scans coming from different sensor types).
+
+## Experiment 1 - high resolution, good alignment
+
+The point cloud for this experiment is taken from the open3d library. It is a relatively high resolution scan of a small scene. In this case the match is done on the identical point cloud, which has been randomly rotated, but not translated. This experiment highlights the ability of the model to align two scans which are very similar, but slightly disturbed
+
+(add some visualization of the point cloud)
+
+## Experiment 2 - low resolution, not aligned
+
+The dataset for this experiment was created using the open-source 3d modelling software Blender [reference to blender] (specifically version 3.3) and a plugin which allows to simulate various scanner types within Blender called BlAInder range scanner, developed by Stefan Reitmann, Lorenzo Neumann and Bernhard Jung [reference github repo]. The experiment runs a script which places 3 simple distinct objects at random locations on a 5x5 grid, and then exports the scanned scene. The objects in the scanned scenes are incomplete, as the scanner point of view does not enable to scan all sides of the objects. The point cloud which is used as the query for the registration, is generated using a 3d object model and the sample_points_poisson_disk method of open3d. 
+The different method of acquisition of the point clouds means that the points are distributed very differently across the objects. This could simulate registration of objects which were scanned by a different scanner or their preprocessing steps were different. It should highlight the robustness of the models.
+
+(add visualization of how different the point clouds are)
+
+# Results
+
+## Experiment 1
+
+
+
+# Code Implementation
+
+### Preprocessing
 
 ### Bibliography
 [1]

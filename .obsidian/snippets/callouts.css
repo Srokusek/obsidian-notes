@@ -1,240 +1,161 @@
-.callout[data-callout="definition"] {
-  --callout-color: 200, 150, 100; /* Warm beige background */
-  --callout-border-color: 160, 100, 60; /* Softer brown for contrast */
-  --callout-icon: lucide-book-open-text; /* Book icon */
-  background: rgba(var(--callout-color), 0.2); /* Slightly transparent background */
-  border-left: 4px solid rgba(var(--callout-border-color), 0.8); /* Softer contrast border */
-  padding: 12px;
-  border-radius: 8px; /* Slightly rounded corners */
-}
-
-.callout[data-callout="definition"] .callout-title {
-  font-weight: bold;
-  font-size: 1.2em;
-  color: rgb(var(--callout-border-color)); /* Title color */
-  text-transform: uppercase; /* Makes it stand out */
-  letter-spacing: 0.5px;
-}
-
-.callout[data-callout="definition"] .callout-content {
-  font-style: italic;
-  color: rgb(var(--callout-border-color)); /* Harmonized text color */
-  opacity: 0.9;
-  font-size: 1em;
-  line-height: 1.5;
-}
-
-
-.callout[data-callout="tldr"] {
-  --callout-color: 230, 240, 255; /* Light blue background */
-  --callout-border-color: 50, 100, 200; /* Deep blue border for emphasis */
-  --callout-icon: lucide-zap; /* Lightning icon for quick insights */
-  background: rgba(var(--callout-color), 0.6); /* Soft transparency */
-  border-left: 4px solid rgba(var(--callout-border-color), 0.9);
-  padding: 12px;
-  border-radius: 8px;
-}
-
-.callout[data-callout="tldr"] .callout-title {
-  font-weight: bold;
-  font-size: 1.2em;
-  color: rgb(var(--callout-border-color));
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.callout[data-callout="tldr"] .callout-content {
-  font-weight: 500;
-  font-size: 1em;
-  color: rgb(var(--callout-border-color));
-  line-height: 1.4;
-}
-
-
-.callout[data-callout="theorem"] {
-  --callout-color: 240, 240, 255; /* Very light blue background */
-  --callout-border-color: 50, 50, 150; /* Deep blue border for a formal feel */
-  --callout-icon: lucide-pi; /* Square root icon for mathematical context */
-  background: rgba(var(--callout-color), 0.5); /* Slight transparency */
-  border-left: 4px solid rgba(var(--callout-border-color), 0.9);
-  padding: 12px;
-  border-radius: 8px;
-}
-
-.callout[data-callout="theorem"] .callout-title {
-  font-weight: bold;
-  font-size: 1.2em;
-  color: rgb(var(--callout-border-color));
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.callout[data-callout="theorem"] .callout-content {
-  font-style: normal;
-  font-size: 1em;
-  color: rgb(var(--callout-border-color));
-  line-height: 1.5;
-}
-
-.callout[data-callout="proof"] {
-  --callout-color: 245, 245, 245; /* Light gray for a subtle background */
-  --callout-border-color: 80, 80, 80; /* Dark gray for a professional contrast */
-  --callout-icon: lucide-pen-tool; /* Pen tool icon for writing proofs */
-  background: rgba(var(--callout-color), 0.6); /* Slight transparency */
-  border-left: 4px solid rgba(var(--callout-border-color), 0.9);
-  padding: 12px;
-  border-radius: 8px;
-  font-family: "Times New Roman", serif; /* Traditional math style */
-}
-
-.callout[data-callout="proof"] .callout-title {
-  font-weight: bold;
-  font-size: 1.2em;
-  color: rgb(var(--callout-border-color));
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-style: italic;
-}
-
-.callout[data-callout="proof"] .callout-content {
-  font-size: 1em;
-  color: rgb(var(--callout-border-color));
-  line-height: 1.5;
-}
-
-.callout[data-callout="corollary"] {
-  --callout-color: 230, 250, 230; /* Soft pastel green background */
-  --callout-border-color: 40, 120, 40; /* Deep green for a classic mathematical look */
-  --callout-icon: lucide-check-circle; /* Checkmark for logical consequences */
-  background: rgba(var(--callout-color), 0.5); /* Subtle transparency */
-  border-left: 4px solid rgba(var(--callout-border-color), 0.9);
-  padding: 12px;
-  border-radius: 8px;
-  font-family: "Times New Roman", serif; /* Formal math style */
-}
-
-.callout[data-callout="corollary"] .callout-title {
-  font-weight: bold;
-  font-size: 1.2em;
-  color: rgb(var(--callout-border-color));
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-style: italic;
-}
-
-.callout[data-callout="corollary"] .callout-content {
-  font-size: 1em;
-  color: rgb(var(--callout-border-color));
-  line-height: 1.5;
-}
-
-.callout[data-callout="question"] {
-  --callout-color: 240, 248, 255; /* Soft pastel blue */
-  --callout-border-color: 30, 100, 180; /* Deep blue for contrast */
-  --callout-icon: lucide-help-circle; /* Question mark icon */
-  background: rgba(var(--callout-color), 0.6); /* Subtle transparency */
-  border-left: 4px solid rgba(var(--callout-border-color), 0.9);
-  padding: 12px;
-  border-radius: 8px;
-  font-family: "Inter", sans-serif; /* Modern and readable */
-}
-
-/* Darkens the icon for better visibility in PDFs */
-.callout[data-callout="question"] .callout-icon {
-  filter: brightness(1) contrast(5); /* Darkens the icon */
-  opacity: 1; /* Ensures full visibility */
-}
-
-.callout[data-callout="question"] .callout-title {
-  font-weight: bold;
-  font-size: 1.2em;
-  color: rgb(var(--callout-border-color));
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.callout[data-callout="question"] .callout-content {
-  font-size: 1em;
-  color: rgb(50, 50, 50); /* Dark gray for readability */
-  line-height: 1.5;
-}
-
-.callout[data-callout="pros"] {
-  --callout-color: 220, 245, 220; /* Soft green background */
-  --callout-border-color: 40, 130, 40; /* Deeper green for contrast */
-  --callout-icon: lucide-circle-plus; /* Changed from thumbs-up to plus */
-  background: rgba(var(--callout-color), 0.6);
-  border-left: 4px solid rgba(var(--callout-border-color), 0.9);
-  padding: 12px;
-  border-radius: 8px;
-  font-family: "Inter", sans-serif;
-}
-
-.callout[data-callout="pros"] .callout-title {
-  font-weight: bold;
-  font-size: 1.2em;
-  color: rgb(var(--callout-border-color));
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.callout[data-callout="pros"] .callout-content {
-  font-size: 1em;
-  color: rgb(50, 50, 50);
-  line-height: 1.5;
-}
-
-.callout[data-callout="cons"] {
-  --callout-color: 255, 235, 235; /* Light red background */
-  --callout-border-color: 180, 60, 60; /* Darker red for contrast */
-  --callout-icon: lucide-circle-minus; /* Changed from thumbs-down to minus */
-  background: rgba(var(--callout-color), 0.6);
-  border-left: 4px solid rgba(var(--callout-border-color), 0.9);
-  padding: 12px;
-  border-radius: 8px;
-  font-family: "Inter", sans-serif;
-}
-
-.callout[data-callout="cons"] .callout-title {
-  font-weight: bold;
-  font-size: 1.2em;
-  color: rgb(var(--callout-border-color));
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.callout[data-callout="cons"] .callout-content {
-  font-size: 1em;
-  color: rgb(50, 50, 50);
-  line-height: 1.5;
-}
-
-.callout[data-callout="wiki"] {
-  --callout-color: 220, 220, 220; /* Neutral gray background */
-  --callout-border-color: 171, 202, 232; /* Classic dark blue */
-  --callout-icon: lucide-list;
-  background: rgba(var(--callout-color), 0.1);
+.callout {
+  --callout-color: 240, 240, 240; /* Neutral background */
+  --callout-border-color: 100, 100, 100; /* Standard border color */
+  --callout-icon: lucide-info; /* Default icon */
+  background: rgba(var(--callout-color), 0.5); /* Unified transparency */
   border-left: 3px solid rgba(var(--callout-border-color), 0.9);
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-family: "Inter", sans-serif;
-  margin: 0.3em 0;
+  padding: 8px; /* Reduced padding */
+  border-radius: 6px; /* Unified corner radius */
+  font-family: "Inter", sans-serif; /* Standardized font */
+  margin: 0.5em 0; /* Compact margins */
 }
 
-.callout[data-callout="wiki"] .callout-title {
+.callout .callout-title {
   font-weight: bold;
-  font-size: 1em;
+  font-size: 1em; /* Unified font size */
   color: rgb(var(--callout-border-color));
   text-transform: uppercase;
   letter-spacing: 0.3px;
-  margin-bottom: 2px;
+  margin-bottom: 4px; /* Compact spacing */
 }
 
-.callout[data-callout="wiki"] .callout-content {
-  font-size: 0.95em;
-  color: rgb(50, 50, 50);
-  line-height: 1.3;
+.callout .callout-content {
+  font-size: 0.9em; /* Unified font size */
+  color: rgb(50, 50, 50); /* Standardized text color */
+  line-height: 1.4; /* Compact line height */
   margin: 0;
-  padding-top: 0;
+}
+
+
+
+/* Specific callout types */
+.callout[data-callout="definition"] {
+  --callout-color: 200, 150, 100;
+  --callout-border-color: 160, 100, 60;
+  --callout-icon: lucide-book-open-text;
+}
+
+.callout[data-callout="definition"] .callout-icon {
+  color: rgb(var(--callout-border-color));
+}
+
+.callout[data-callout="definition"] .svg-icon {
+  color: rgb(var(--callout-border-color));
+}
+
+.callout[data-callout="tldr"] {
+  --callout-color: 230, 240, 255;
+  --callout-border-color: 50, 100, 200;
+  --callout-icon: lucide-zap;
+}
+
+.callout[data-callout="tldr"] .callout-icon {
+  color: rgb(var(--callout-border-color));
+}
+
+.callout[data-callout="tldr"] .svg-icon {
+  color: rgb(var(--callout-border-color));
+}
+
+.callout[data-callout="theorem"] {
+  --callout-color: 240, 240, 255;
+  --callout-border-color: 50, 50, 150;
+  --callout-icon: lucide-pi;
+}
+
+.callout[data-callout="theorem"] .callout-icon {
+  color: rgb(var(--callout-border-color));
+}
+
+.callout[data-callout="theorem"] .svg-icon {
+  color: rgb(var(--callout-border-color));
+}
+
+.callout[data-callout="proof"] {
+  --callout-color: 245, 245, 245;
+  --callout-border-color: 80, 80, 80;
+  --callout-icon: lucide-pen-tool;
+  font-family: "Times New Roman", serif;
+}
+
+.callout[data-callout="proof"] .callout-icon {
+  color: rgb(var(--callout-border-color));
+}
+
+.callout[data-callout="proof"] .svg-icon {
+  color: rgb(var(--callout-border-color));
+}
+
+.callout[data-callout="corollary"] {
+  --callout-color: 230, 250, 230;
+  --callout-border-color: 40, 120, 40;
+  --callout-icon: lucide-check-circle;
+  font-family: "Times New Roman", serif;
+}
+
+.callout[data-callout="corollary"] .callout-icon {
+  color: rgb(var(--callout-border-color));
+}
+
+.callout[data-callout="corollary"] .svg-icon {
+  color: rgb(var(--callout-border-color));
+}
+
+.callout[data-callout="question"] {
+  --callout-color: 240, 248, 255;
+  --callout-border-color: 30, 100, 180;
+  --callout-icon: lucide-help-circle;
+}
+
+.callout[data-callout="question"] .callout-icon {
+  color: rgb(var(--callout-border-color));
+}
+
+.callout[data-callout="question"] .svg-icon {
+  color: rgb(var(--callout-border-color));
+}
+
+.callout[data-callout="pros"] {
+  --callout-color: 220, 245, 220;
+  --callout-border-color: 40, 130, 40;
+  --callout-icon: lucide-circle-plus;
+}
+
+.callout[data-callout="pros"] .callout-icon {
+  color: rgb(var(--callout-border-color));
+}
+
+.callout[data-callout="pros"] .svg-icon {
+  color: rgb(var(--callout-border-color));
+}
+
+.callout[data-callout="cons"] {
+  --callout-color: 255, 235, 235;
+  --callout-border-color: 180, 60, 60;
+  --callout-icon: lucide-circle-minus;
+}
+
+.callout[data-callout="cons"] .callout-icon {
+  color: rgb(var(--callout-border-color));
+}
+
+.callout[data-callout="cons"] .svg-icon {
+  color: rgb(var(--callout-border-color));
+}
+
+.callout[data-callout="wiki"] {
+  --callout-color: 220, 220, 220;
+  --callout-border-color: 171, 202, 232;
+  --callout-icon: lucide-list;
+  padding: 4px 6px; /* Extra compact for wiki */
+  margin: 0.3em 0;
+}
+
+.callout[data-callout="wiki"] .callout-icon {
+  color: rgb(var(--callout-border-color));
+}
+
+.callout[data-callout="wiki"] .svg-icon {
+  color: rgb(var(--callout-border-color));
 }
 
