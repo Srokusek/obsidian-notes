@@ -46,8 +46,7 @@ I actually had trouble when looking for the name of the 3D version of Template M
 Downsampling is the process of systematically reducing the number of points within the point cloud. There exist different methods and 2 of those are implemented in the open3d library. The first one is **uniform down sample** which takes the list of point clouds, and removes every $k^{th}$ point[cite o3d]. This operation is very fast, but it can be clearly seen that it lacks much motivation for choosing the points which should be removed in terms of their actual position in space. 
 The method for downsampling I chose was the **voxel down sample**. This method is more "spatially" motivated, as it essentially splits the point cloud space into a voxel grid, if one voxel contains more than one points, it calculates the average point [cite 03d voxel down sample]. This method resembles resolution dimension in 2d images, with the difference that instead of pixels we use voxels (3d equivalent of pixels - **vo**lumetric **pixel**s)
 ![[SIV Report 2025-04-02 14.00.08.excalidraw]]
-(add downsample diagram)
-	
+
    >[!question] Why downsample?
    >Point clouds can be very dense data structures, with hundreds of thousands of points. The high complexity can quickly become unwieldy in subsequent computations. In our case, it could also be the case that the overly detailed point cloud would lead to a worse registration result [cite exact point cloud downsampling]
    
@@ -56,6 +55,7 @@ The method for downsampling I chose was the **voxel down sample**. This method i
 
 The following step is estimating the normals. As mentioned above, point clouds do not have explicit information about the surface of the scanned object. We can still extract some information about surfaces by estimating the normal to a given point. The normal can clearly not be computed given only a single point, so instead we select a point and use the neighborhood of points to estimate the normal. The neighborhood is typically calculated using  a simple radius or various forms of K-nearest neighbors. [cite o3d estimate normals]
 
+![[SIV Report 2025-04-05 10.37.23.excalidraw]]
 (add diagram for normal estimation)
 
 #### 3. Extracting features
@@ -63,12 +63,17 @@ The following step is estimating the normals. As mentioned above, point clouds d
 Extracting the features is one of the most important steps, as it is these features that will be used to find matches. The state of the art features that are being used are the Fast Point Feature Histograms (fpfh). The fpfh is a faster version of the pfh algorithm, which uses local information about the 3 different local geometric properties, related to the angles between points, normals, relative position etc. The 3 groups of values are split into 11 bins each to create 3 different histograms. These histogram values are what is used to map each point into the 33-dimensional feature space ($histograms*bins=3*11=33$) [cite IEEE fpfh paper]. The exact composition of the properties and the fpfh algorithm itself is outside of both the scope and focus of this paper, but more information can be found in references.
 The main takeaway is that mapping into the feature space is done with the goal of being able to compare points between point clouds in a space, where closer points should have more similar local geometric properties.
 
-(insert diagram showing that points with similar geometric properties are close to each other in fpfh feature space)
+![[SIV Report 2025-04-06 20.48.09.excalidraw]]
 
 # RANSAC Global Registration
 
 RANSAC, or **Ran**dom **Sa**mple **C**onsensus, is a general method for learning data with outliers. As the "Random" suggests, it is a non-deterministic method. The general idea is to take a random sample among the data, fit based solely on this sample and examine the quality of this fit based on the entire data. All points which are deemed as "well fitted" are marked as inliers. This process is repeated and the fit which has the highest number of inliers is selected. [cite wikipedia]
 In the point cloud case, we choose a random sample of points, look up their closest neighbors in the fpfh space (where similar points should exist nearby). The algorithm then takes these pairs of sampled points and their closest fpfh neighbors, and tries to find a transformation which would minimize their distance in the xyz space. Afterwards, all points are considered and to check if their nearest neighbor in the xyz space is also near in the fpfh space. If they are, we mark them as inliers and count them. This process of randomly sampling and evaluation is repeated many times, with some clever pruning tricks to focus only on promising matches. The output of the algorithm is the transformation which lead to the highest number of inliers. [cite  o3d] 
+
+![[SIV Report 2025-04-06 21.10.39.excalidraw]]
+
+![[SIV Report 2025-04-05 11.12.57.excalidraw]]
+
 So why is this method particularly useful in point cloud registration? It is essentially looking for a fit that matches for the highest number of points. It is very likely that the 2 point clouds are not exactly equal, nor have the same number of points. Since we are only matching based on a subsample and allow for outliers in the result, the RANSAC algorithm is a robust way to locate point clouds with similar shape. 
 
 >[!pros] Pros of RANSAC Global Registration
@@ -83,6 +88,7 @@ So why is this method particularly useful in point cloud registration? It is ess
 
 # Fast Global Registration
 
+Fast global registration, or fgr, is a method within the open3d library. It tries to improve on the RANSAC method by eliminating the need for many iterations of subsampling. As a result the algorithm is much faster, enabling on-line application. In simplified terms it does so by defining a single objective function to be optimized over the 2 point clouds. It also looks for corresponding points within the 33 dimensional fpfh space. Some of the shortcomings of this method are that it is crucial to select the correct parameters (specifically the voxel size for downsampling) for it to work properly. Overall fgr can be **much** faster and also more precise than RANSAC, but there are some drawbacks in terms of reliability, especially in less overlapping point clouds. More information about the actual workings can be found in the original paper. [cite fgr]
 
 >[!pros] Pros of FGR
 >- **Much** faster than RANSAC
