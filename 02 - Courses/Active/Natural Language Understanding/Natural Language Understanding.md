@@ -11,6 +11,8 @@
 - [[Sentence-level NLU]]
 - [[Neural Networks for NLU]]
 
+- [[Intent and Slot Filling]]
+
 ## 📑 Assignments
 - [[NLU - Project 1A]]
 - [[NLU - Project 1B]]
