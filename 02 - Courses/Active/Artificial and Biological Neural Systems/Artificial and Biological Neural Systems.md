@@ -10,7 +10,6 @@
 - [[RSA in ABNS]]
 
 ## 📑 Assignments
-- [[EXAMPLE]]
-- [[EXAMPLE]]
+- [[ABNS - Assignment2]]
 
 #courses/course_index
