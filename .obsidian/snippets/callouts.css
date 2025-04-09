@@ -159,3 +159,14 @@
   color: rgb(var(--callout-border-color));
 }
 
+img[alt*="center"] {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+img[src*="excalidraw"] {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
