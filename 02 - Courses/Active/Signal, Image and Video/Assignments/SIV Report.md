@@ -60,15 +60,15 @@ The following step is estimating the normals. As mentioned above, point clouds d
 
 #### 3. Extracting features
 
-Extracting the features is one of the most important steps, as it is these features that will be used to find matches. The state of the art features that are being used are the Fast Point Feature Histograms (fpfh). The fpfh is a faster version of the pfh algorithm, which uses local information about the 3 different local geometric properties, related to the angles between points, normals, relative position etc. The 3 groups of values are split into 11 bins each to create 3 different histograms. These histogram values are what is used to map each point into the 33-dimensional feature space ($histograms*bins=3*11=33$) [cite IEEE fpfh paper]. The exact composition of the properties and the fpfh algorithm itself is outside of both the scope and focus of this paper, but more information can be found in references.
+Extracting the features is one of the most important steps, as it is these features that will be used to find matches. The state of the art features that are being used are the **Fast Point Feature Histograms** (**FPFH**). The FPFH is a faster version of the PFH algorithm, which uses local information about the 3 different local geometric properties, related to the angles between points, normals, relative position etc. The 3 groups of values are split into 11 bins each to create 3 different histograms. These histogram values are what is used to map each point into the 33-dimensional feature space ($histograms*bins=3*11=33$) [cite IEEE fpfh paper]. The exact composition of the properties and the FPFH algorithm itself is outside of both the scope and focus of this paper, but more information can be found in references.
 The main takeaway is that mapping into the feature space is done with the goal of being able to compare points between point clouds in a space, where closer points should have more similar local geometric properties.
 
 ![[SIV Report 2025-04-06 20.48.09.excalidraw]]
 
 # RANSAC Global Registration
 
-RANSAC, or **Ran**dom **Sa**mple **C**onsensus, is a general method for learning data with outliers. As the "Random" suggests, it is a non-deterministic method. The general idea is to take a random sample among the data, fit based solely on this sample and examine the quality of this fit based on the entire data. All points which are deemed as "well fitted" are marked as inliers. This process is repeated and the fit which has the highest number of inliers is selected. [cite wikipedia]
-In the point cloud case, we choose a random sample of points, look up their closest neighbors in the fpfh space (where similar points should exist nearby). The algorithm then takes these pairs of sampled points and their closest fpfh neighbors, and tries to find a transformation which would minimize their distance in the xyz space. Afterwards, all points are considered and to check if their nearest neighbor in the xyz space is also near in the fpfh space. If they are, we mark them as inliers and count them. This process of randomly sampling and evaluation is repeated many times, with some clever pruning tricks to focus only on promising matches. The output of the algorithm is the transformation which lead to the highest number of inliers. [cite  o3d] 
+**RANSAC**, or **Ran**dom **Sa**mple **C**onsensus, is a general method for learning data with outliers. As the "Random" suggests, it is a non-deterministic method. The general idea is to take a random sample among the data, fit based solely on this sample and examine the quality of this fit based on the entire data. All points which are deemed as "well fitted" are marked as inliers. This process is repeated and the fit which has the highest number of inliers is selected. [cite wikipedia]
+In the point cloud case, we choose a random sample of points, look up their closest neighbors in the FPFH space (where similar points should exist nearby). The algorithm then takes these pairs of sampled points and their closest FPFH neighbors, and tries to find a transformation which would minimize their distance in the XYZ space. Afterwards, all points are considered and to check if their nearest neighbor in the XYZ space is also near in the FPFH space. If they are, we mark them as inliers and count them. This process of randomly sampling and evaluation is repeated many times, with some clever pruning tricks to focus only on promising matches. The output of the algorithm is the transformation which lead to the highest number of inliers. [cite  o3d] 
 
 ![[SIV Report 2025-04-05 11.12.57.excalidraw]]
 
@@ -80,16 +80,17 @@ So why is this method particularly useful in point cloud registration? It is ess
 >- Works globally
 
 >[!cons] Cons of RANSAC global registration
->- Non deterministic
 >- Requires many iterations
 >- Slow
 
 # Fast Global Registration
 
-Fast global registration, or fgr, is a method within the open3d library. It tries to improve on the RANSAC method by eliminating the need for many iterations of subsampling. As a result the algorithm is much faster, enabling on-line application. In simplified terms it does so by defining a single objective function to be optimized over the 2 point clouds. It also looks for corresponding points within the 33 dimensional fpfh space. Some of the shortcomings of this method are that it is crucial to select the correct parameters (specifically the voxel size for downsampling) for it to work properly. Overall fgr can be **much** faster and also more precise than RANSAC, but there are some drawbacks in terms of reliability, especially in less overlapping point clouds. More information about the actual workings can be found in the original paper. [cite fgr]
+**Fast Global Registration**, or FGR, is a method within the open3d library. It tries to improve on the RANSAC method by eliminating the need for many iterations of subsampling. As a result the algorithm is much faster, enabling on-line application. In simplified terms it does so by defining a single objective function to be optimized over the 2 point clouds. It also looks for corresponding points within the 33 dimensional FPFH space. The objective function is optimized using the graduated non-convexity strategy. This allows FGR to ignore the possible outliers between clouds in the early steps while still achieving very close match in the end.
+Some of the shortcomings of this method are that it is crucial to select the correct parameters (specifically the voxel size for downsampling) for it to work properly. Overall FGR can be **much** faster and also more precise than RANSAC, but there are some drawbacks in terms of reliability, especially in less overlapping point clouds. Since it only does one iteration of the maximization, it has some risk of getting into a local minimum. More information about the actual workings can be found in the original paper. [cite fgr]
+(add fgr figure)
 
 >[!pros] Pros of FGR
->- **Much** faster than RANSAC
+>- Much faster than RANSAC
 >- With good parameters can give better result than even local alignment
 
 >[!cons] cons of FGR
@@ -101,28 +102,59 @@ Fast global registration, or fgr, is a method within the open3d library. It trie
 
 I tested the models using 2 different experiments. The task in each of the experiments was to align the target and source point clouds. The first experiment focuses on aligning 2 identical point clouds with high resolution and a relatively good initial alignment. The second experiment performs registration in a scene with multiple objects, where the target and source point clouds have very different distribution of points (simulates scans coming from different sensor types).
 
-## Experiment 1 - high resolution, good alignment
+## Experiment 1 - complex point clouds, no outliers
 
-The point cloud for this experiment is taken from the open3d library. It is a relatively high resolution scan of a small scene. In this case the match is done on the identical point cloud, which has been randomly rotated, but not translated. This experiment highlights the ability of the model to align two scans which are very similar, but slightly disturbed
+The point cloud for this experiment is taken from the open3d library. It is a relatively high resolution scan of a small scene. In this case the match is done on the identical point cloud, which has been randomly rotated, but not translated. This experiment **highlights the ability of the model to align two scans which are very similar, but slightly disturbed**.
 
 (add some visualization of the point cloud)
 
-## Experiment 2 - low resolution, not aligned
+## Experiment 2 - simple point clouds, with outliers
 
-The dataset for this experiment was created using the open-source 3d modelling software Blender [reference to blender] (specifically version 3.3) and a plugin which allows to simulate various scanner types within Blender called BlAInder range scanner, developed by Stefan Reitmann, Lorenzo Neumann and Bernhard Jung [reference github repo]. The experiment runs a script which places 3 simple distinct objects at random locations on a 5x5 grid, and then exports the scanned scene. The objects in the scanned scenes are incomplete, as the scanner point of view does not enable to scan all sides of the objects. The point cloud which is used as the query for the registration, is generated using a 3d object model and the sample_points_poisson_disk method of open3d. 
-The different method of acquisition of the point clouds means that the points are distributed very differently across the objects. This could simulate registration of objects which were scanned by a different scanner or their preprocessing steps were different. It should highlight the robustness of the models.
+The dataset for this experiment was created using the open-source 3d modelling software Blender [reference to blender] (specifically version 3.3) and a plugin which allows to simulate various scanner types within Blender called BlAInder range scanner, developed by Stefan Reitmann, Lorenzo Neumann and Bernhard Jung [reference github repo]. The experiment runs a script which places 3 simple distinct objects at random locations on a 5x5 grid, and then exports the scanned scene. The objects in the scanned scenes are incomplete, as the scanner point of view does not enable to scan all sides of the objects. The point cloud which is used as the query for the registration, is generated using a 3d object model and the sample_points_poisson_disk method of open3d. This experiment is meant to **simulate a use case, where we want to register a real world scanned object based on its computer model**.
+This experiment contains inherent outliers in the form of additional objects. Furthermore, the different method of acquisition of the point clouds means that the points are distributed very differently across the objects. This could simulate registration of objects which were scanned by a different scanner in a environment with multiple objects. It should highlight the robustness of the models.
 
 (add visualization of how different the point clouds are)
 
+## Evaluation
+
+As for evaluating the results of the experiment, 2 metrics will be used. First is the **Fitness**, which is the internal metric used by the o3d models to determine how good a fit was found. It is a measure of the calculated portion of points which are determined as inliers. 
+The other metric is the **Root Mean Square Error** or **RMSE**. This is a fairly typical metric used in many tasks. In the point cloud case it works by for each point in cloud A it finds the closest point in cloud B and calculates their distance. All of these distances are then summed and normalized by the number of points. Lastly we take the square root to give approximate "actual" distance. 
+The last metric of interest is **time**. The actual computation time of each of the different models is very relevant to their applications. It should be said however that measuring computation time is not always very accurate, still it gives an important insight. 
+
 # Results
 
-## Experiment 1
+To evaluate the models, I compared their performance between the 2 experiments on the 3 metrics mentioned above.
+
+## Fitness
+
+The fitness is not always the most insightful metric. It conveys the belief of the model as to how good a fit it has found. Comparing them between different samples is not always useful, since having any amount of outliers will cause an inherent decrease in the fitness measure. 
+In the no outlier case, both of the models have achieved a fitness of 1, meaning that both models found what they perceive as a perfect fit. 
+In the experiment with outliers, the RANSAC registration was again able to saturate around the fitness level of $0.41$(which is likely the ratio of correct inliers to correct outliers). The FGR mean was close enough at $0.40$, however it is visibly less stable.
+
+![[Pasted image 20250409100856.png]]
+
+![[Pasted image 20250409100909.png]]
+
+## RMSE
+
+The RMSE is in some way a "more strict" measure, as it uses the transformation learned on the downscaled model, but uses it to evaluate the distance between the full resolution clouds. Between the 2 experiments the outcomes were quite different. 
+In the no-outliers FGR outperformed RANSAC in all examples (note that for RMSE lower is better).
+As for the outliers case, the opposite outcome happened. RANSAC was able to outperform FGR in all but few cases, by similar relative margin. 
+
+![[Pasted image 20250409101017.png]]
+![[Pasted image 20250409100935.png]]
+
+## Time
+
+As for the time required of both of these algorithms, FGR clearly outperforms RANSAC in the vast majority of cases, both in experiment 1 and 2. FGR was especially fast in the second experiment, which contains much simpler point clouds. Interestingly enough, the more complex first experiment actually made the RANSAC algorithm faster. 
+
+![[Pasted image 20250409101034.png]]
+![[Pasted image 20250409101045.png]]
+
+# Conclusion
 
 
 
-# Code Implementation
-
-### Preprocessing
 
 ### Bibliography
 [1]
