@@ -1,7 +1,7 @@
 # Natural Language Understanding Course Index - Course Hub
 ---
 ## 📄 Handwritten Notes (GoodNotes)
-- [EXAMPLE](file:///path/to/google/drive/GoodNotes/Lecture1.pdf)
+- 
 
 ## 📚 Topics
 - [[EXAMPLE]]
@@ -12,6 +12,7 @@
 - [[Neural Networks for NLU]]
 
 - [[Intent and Slot Filling]]
+- [[Grammars]]
 
 ## 📑 Assignments
 - [[NLU - Project 1A]]
