@@ -7,6 +7,8 @@
 - [[EXAMPLE]]
 
 ## 📝 Summaries
+- [[Feed Forward Neural Neworks]]
+- [[Backpropagation]]
 - [[Convolutional Neural Networks]]
 
 ## 📑 Assignments

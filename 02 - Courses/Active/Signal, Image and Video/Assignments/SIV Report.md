@@ -36,8 +36,8 @@ I actually had trouble when looking for the name of the 3D version of template m
 
 ![[SIV Report 2025-03-29 18.41.07.excalidraw|center]]
 
+>[!note] Global vs Local Registration
 Registration is further split into global and local. In local registration, we assume to have a good starting knowledge about the general location of the object we are looking for, therefore only need look in a smaller area. In global registration we do not have any knowledge about the position of the queried object, thus needing to perform the registration search globally. This report focuses on the global case.
-
 ![[SIV Report 2025-03-29 21.02.18.excalidraw|center]]
 
 # Preprocessing steps
@@ -72,9 +72,10 @@ The main takeaway is that mapping into the feature space is done with the goal o
 **RANSAC**, or **Ran**dom **Sa**mple **C**onsensus, is a general method for learning data with outliers. As the "Random" suggests, it is a non-deterministic method. The general idea is to take a random sample among the data, fit based solely on this sample and examine the quality of this fit based on the entire data. All points which are deemed as "well fitted" are marked as inliers. This process is repeated and the fit which has the highest number of inliers is selected. [7]
 In the point cloud case, we choose a random sample of points, look up their closest neighbors in the FPFH space (where similar points should exist nearby). The algorithm then takes these pairs of sampled points and their closest FPFH neighbors, and tries to find a transformation which would minimize their distance in the XYZ space. Afterwards, all points are considered and to check if their nearest neighbor in the XYZ space is also near in the FPFH space. If they are, we mark them as inliers and count them. This process of randomly sampling and evaluation is repeated many times, with some clever pruning tricks to focus only on promising matches. The output of the algorithm is the transformation which lead to the highest number of inliers. [6] 
 
-![[SIV Report 2025-04-05 11.12.57.excalidraw|center]]
+![[SIV Report 2025-04-05 11.12.57.excalidraw|center|700]]
 
 So why is this method particularly useful in point cloud registration? It is essentially looking for a fit that matches for the highest number of points. It is very likely that the 2 point clouds are not exactly equal, nor have the same number of points. Since we are only matching based on a subsample and allow for outliers in the result, the RANSAC algorithm is a robust way to locate point clouds with similar shape. 
+![[SIV Report 2025-04-05 11.12.57.excalidraw 1|center|500]]
 
 >[!pros] Pros of RANSAC Global Registration
 >- Robust
@@ -90,7 +91,7 @@ So why is this method particularly useful in point cloud registration? It is ess
 **Fast Global Registration**, or FGR, is a method within the open3d library. It tries to improve on the RANSAC method by eliminating the need for many iterations of subsampling. As a result the algorithm is much faster, enabling on-line application. In simplified terms it does so by defining a single objective function to be optimized over the 2 point clouds. It also looks for corresponding points within the 33 dimensional FPFH space. The objective function is optimized using the graduated non-convexity strategy. This allows FGR to ignore the possible outliers between clouds in the early steps while still achieving very close match in the end.
 Some of the shortcomings of this method are that it is crucial to select the correct parameters (specifically the voxel size for downsampling) for it to work properly. Overall FGR can be **much** faster and also more precise than RANSAC, but there are some drawbacks in terms of reliability, especially in less overlapping point clouds. Since it only does one iteration of the maximization, it has some risk of getting into a local minimum. More information about the actual workings can be found in the original paper. [10]
 
-(add fgr figure)
+![[SIV Report 2025-04-05 11.12.57.excalidraw 2|center|700]]
 
 >[!pros] Pros of FGR
 >- Much faster than RANSAC
