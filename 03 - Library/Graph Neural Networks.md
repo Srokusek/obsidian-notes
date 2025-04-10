@@ -21,6 +21,11 @@ Tags: #GNN #ML #NN/GNN
 
 Graph neural Networks, or GNNs are neural  networks specially constructed to be applied to graph structures. 
 
+There are some functions and processes specific to GNNs, some of these include:
+- aggregation operators
+	- how do we propagate knowledge throughout the graph
+	- 
+
 ## Mathematics
 
 
