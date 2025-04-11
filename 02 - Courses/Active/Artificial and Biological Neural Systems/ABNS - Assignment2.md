@@ -49,3 +49,14 @@ A negative similarity means that the detected features which lead to an increase
 
 ![[ABNS - Assignment2 Instructions.pdf#page=2&rect=86,460,539,549|ABNS - Assignment2 Instructions, p.2]]
 
+To try to investigate the similarity, I decided to cluster the 10 wight vectors from the classifier weights using an agglomerative clustering method and visualize the clustering using a dendrogram. This visualization is interesting as it shows how "hard" is it to merge classes, visualized on the y-axis. 
+In this case no two classes are significantly "closer" than the others, but the easiest merge are the cat-dog classes. Intuitively this makes sense as they are both categories of somewhat similar animals. The second merge comes in automobile-truck categories. These too are expected to be relatively close, as they share several characteristics (wheels, sharp angles etc.)
+Even when looking at the other pairs, there is some possible explanations (frog-ship both likely to include water, bird-deer both likely in forest, airplane-horse is not so clear) which however to me seems more related to the likely environment of the images within this class.
+The fact that there appears to be good possible explanations for the categories which get merged, gives us some hint that the model is "aware" of these similarities (is able to encode them). 
+![[Pasted image 20250411145051.png]]
+>[!note] Agglomerative clustering and dendrograms
+>**Agglomerative clustering** comes from a family of hierarchical clustering methods. These methods cluster samples by iteratively joining (or splitting) the samples based on their distance. Agglomerative clustering starts from each sample having it's own cluster and iteratively joins the 2 closest clusters.
+>**Dendrogram** is a common visualization of hierarchical clusters. The dendrogram "starts" from the bottom, where all classes have their own cluster and goes up as we iteratively merge the clusters until we have only one cluster left. The distance between the merged clusters is visualized by the length of their "legs" before they are joined.
+
+## Part 3: extension
+
