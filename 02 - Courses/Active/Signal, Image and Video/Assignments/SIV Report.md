@@ -110,14 +110,14 @@ I tested the models using 2 different experiments. The task in each of the exper
 
 The point cloud for this experiment is taken from the open3d library. It is a relatively high resolution scan of a small scene. In this case the match is done on the identical point cloud, which has been randomly rotated, but not translated. This experiment **highlights the ability of the model to align two scans which are very similar, but slightly disturbed**.
 
-(add some visualization of the point cloud)
+![[Pasted image 20250411170128.png|center|500]]
 
 ## Experiment 2 - simple point clouds, with outliers
 
 The dataset for this experiment was created using the open-source 3d modelling software Blender [8] (specifically version 3.3) and a plugin which allows to simulate various scanner types within Blender called BlAInder range scanner, developed by Stefan Reitmann, Lorenzo Neumann and Bernhard Jung [9]. The experiment runs a script which places 3 simple distinct objects at random locations on a 5x5 grid, and then exports the scanned scene. The objects in the scanned scenes are incomplete, as the scanner point of view does not enable to scan all sides of the objects. The point cloud which is used as the query for the registration, is generated using a 3d object model and the sample_points_poisson_disk method of open3d. This experiment is meant to **simulate a use case, where we want to register a real world scanned object based on its computer model**.
 This experiment contains inherent outliers in the form of additional objects. Furthermore, the different method of acquisition of the point clouds means that the points are distributed very differently across the objects. This could simulate registration of objects which were scanned by a different scanner in a environment with multiple objects. It should highlight the robustness of the models.
 
-(add visualization of how different the point clouds are)
+![[Pasted image 20250411170252.png|center]]
 
 ## Evaluation
 
