@@ -46,3 +46,6 @@ The weight vectors give insight into which features are considered for classific
 If the cosine similarity is high, we expect that the features used for classifications are present within the image. For example the high similarity ($0.390$) between ship and airplane shows that similar features are used as indicators for selecting ship or airplane class. 
 A zero similarity would should that the embeddings and weights would be mostly orthogonal or irrelevant on the decision made. This is the example for the frog-dog case.
 A negative similarity means that the detected features which lead to an increased activation in one category lead to a decreased activation in the other. An example being the horse-automobile.
+
+![[ABNS - Assignment2 Instructions.pdf#page=2&rect=86,460,539,549|ABNS - Assignment2 Instructions, p.2]]
+
